@@ -1,0 +1,104 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+
+ENTITY Counter_S1 IS
+  PORT (
+  		clock_S1, enable_S1, incmin, up_or_down, reset: IN std_logic;
+  		Q_S1: OUT std_logic_vector(3 downto 0); --reversible counter modulo 6 (0-5, on 4 bits)
+  		carry: OUT std_logic
+    );
+END Counter_S1;
+
+ARCHITECTURE TypeArchitecture OF Counter_S1 IS
+
+BEGIN
+
+	process(clock_S1)
+	
+	variable internal_state: std_logic_vector(3 downto 0) := "0000";
+	variable internal_carry: std_logic := '0';
+	
+	begin
+	
+	if(enable_S1 = '1') then
+		if(reset = '1') then internal_state := "0000"; --reset with 0
+		elsif(rising_edge(clock_S1)) then
+			if(up_or_down = '1') then --count up
+				if(internal_state = "0101") then internal_state := "0000";
+				else internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "0000") then internal_carry := '1'; --finish counting in the loop 0-5
+				else internal_carry := '0';
+				end if;
+			else --count down
+				if(internal_state = "0000") then internal_state := "0101";
+				else internal_state := internal_state - 1;
+				end if;
+				if(internal_state = "0101") then internal_carry := '1'; --finish counting in the loop 5-0
+				else internal_carry := '0';
+				end if;
+			end if;
+
+		end if;
+
+	end if;
+
+	Q_S1 <= internal_state;
+	carry <= internal_carry;
+
+	end process;
+	
+END TypeArchitecture;
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+
+ENTITY Counter_S1 IS
+  PORT (
+  		clock_S1, enable_S1, incmin, up_or_down, reset: IN std_logic;
+  		Q_S1: OUT std_logic_vector(3 downto 0); --reversible counter modulo 6 (0-5, on 4 bits)
+  		carry: OUT std_logic
+    );
+END Counter_S1;
+
+ARCHITECTURE TypeArchitecture OF Counter_S1 IS
+
+BEGIN
+
+	process(clock_S1)
+	
+	variable internal_state: std_logic_vector(3 downto 0) := "0000";
+	variable internal_carry: std_logic := '0';
+	
+	begin
+	
+	if(enable_S1 = '1') then
+		if(reset = '1') then internal_state := "0000"; --reset with 0
+		elsif(rising_edge(clock_S1)) then
+			if(up_or_down = '1') then --count up
+				if(internal_state = "0101") then internal_state := "0000";
+				else internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "0000") then internal_carry := '1'; --finish counting in the loop 0-5
+				else internal_carry := '0';
+				end if;
+			else --count down
+				if(internal_state = "0000") then internal_state := "0101";
+				else internal_state := internal_state - 1;
+				end if;
+				if(internal_state = "0101") then internal_carry := '1'; --finish counting in the loop 5-0
+				else internal_carry := '0';
+				end if;
+			end if;
+
+		end if;
+
+	end if;
+
+	Q_S1 <= internal_state;
+	carry <= internal_carry;
+
+	end process;
+	
+END TypeArchitecture;

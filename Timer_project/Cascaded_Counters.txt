@@ -1,0 +1,292 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY Cascaded_Counters IS
+  PORT (
+ 	reset, 
+enable_cascaded, incmin, up_or_down: IN std_logic;
+  	clock_cascaded: IN std_logic;
+  	carry: OUT std_logic;
+  	Q_cascaded: OUT std_logic_vector(15 downto 0)  --the output will be all the counters concatenated, all the numbers are "linked"
+    );
+END Cascaded_Counters;
+
+ARCHITECTURE TypeArchitecture OF Cascaded_Counters IS
+
+COMPONENT Counter_S0 is 
+PORT (
+  		clock_S0, enable_S0, incmin, up_or_down, reset: IN std_logic;
+  		Q_S0: OUT std_logic_vector(3 downto 0); --reversible counter modulo 10 (0-9, on 4 bits) 
+  		carry: OUT std_logic
+    );
+END COMPONENT;
+
+COMPONENT Counter_S1 is
+PORT (
+  		clock_S1, enable_S1, incmin, up_or_down, reset: IN std_logic;
+  		Q_S1: OUT std_logic_vector(3 downto 0); --reversible counter modulo 6 (0-5, on 4 bits)
+  		carry: OUT std_logic
+    );
+END COMPONENT;
+
+COMPONENT Counter_M0 is
+PORT (
+  		clock_M0, enable_M0, incmin, up_or_down, reset: IN std_logic;
+  		Q_M0: OUT std_logic_vector(3 downto 0); --reversible counter modulo 10 (0-9, on 4 bits) 
+  		carry: OUT std_logic
+    );
+END COMPONENT;
+
+COMPONENT Counter_M1 is
+PORT (
+  		clock_M1, enable_M1, incmin, up_or_down, reset: IN std_logic;
+  		Q_M1: OUT std_logic_vector(3 downto 0); --reversible counter modulo 10 (0-9, on 4 bits) 
+  		carry: OUT std_logic
+    );
+END COMPONENT;
+
+signal internal_state: std_logic_vector(15 downto 0); 
+signal carry_S0, carry_S1, carry_M0, carry_M1: std_logic;
+
+BEGIN
+
+C_S0: Counter_S0 port map(
+		clock_S0 => clock_cascaded, enable_S0 => enable_cascaded, incmin => incmin, up_or_down => up_or_down, reset => reset,
+		Q_S0 =>  internal_state(3 downto 0), carry => carry_S0);
+
+C_S1: Counter_S1 port map(
+		clock_S1 => carry_S0, enable_S1 => enable_cascaded, incmin => incmin, up_or_down => up_or_down, reset => reset,
+		Q_S1 => internal_state(7 downto 4), carry => carry_S1 );
+
+C_M0: Counter_M0 port map(
+		clock_M0 => carry_S1, enable_M0 => enable_cascaded, incmin => incmin, up_or_down => up_or_down, reset => reset,
+		Q_M0 => internal_state(11 downto 8), carry => carry_M0 );
+
+C_M1: Counter_M1 port map(
+		clock_M1=> carry_M0, enable_M1=> enable_cascaded, incmin => incmin, up_or_down => up_or_down, reset => reset,
+		Q_M1 => internal_state(15 downto 12), carry => carry_M1 );
+
+Q_cascaded <= internal_state;
+carry <= carry_M1;
+
+END TypeArchitecture;
+
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all
+;
+
+ENTITY Counter_S0 IS
+  PORT (
+  		clock_S0, enable_S0, incmin, up_or_down, reset: IN std_logic;
+  		Q_S0: OUT std_logic_vector(3 downto 0); --reversible counter modulo 10 (0-9, on 4 bits) 
+  		carry: OUT std_logic
+    );
+END Counter_S0;
+
+ARCHITECTURE TypeArchitecture OF Counter_S0 IS
+
+BEGIN
+
+	process(clock_S0)
+	
+	variable internal_state: std_logic_vector(3 downto 0) := "0000";
+	variable internal_carry: std_logic := '0';
+	
+	begin
+	
+	if(enable_S0 = '1') then
+		if(reset = '1') then internal_state := "0000"; --reset with 0
+		elsif(rising_edge(clock_S0)) then
+			if(up_or_down = '1') then --count up
+				if(internal_state = "1001") then internal_state := "0000";
+				else internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "0000") then internal_carry := '1'; --finish counting in the loop 0-9
+				else internal_carry := '0';
+				end if;
+			else --count down
+				if(internal_state = "0000") then internal_state := "1001";
+				else internal_state := internal_state - 1;
+				end if;
+				if(internal_state = "1001") then internal_carry := '1'; --finish counting in the loop 9-0
+				else internal_carry := '0';
+				end if;
+			end if;
+
+		end if;
+
+	end if;
+
+	Q_S0 <= internal_state;
+	carry <= internal_carry;
+
+	end process;
+	
+END TypeArchitecture;
+
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+
+ENTITY Counter_S1 IS
+  PORT (
+  		clock_S1, enable_S1, incmin, up_or_down, reset: IN std_logic;
+  		Q_S1: OUT std_logic_vector(3 downto 0); --reversible counter modulo 6 (0-5, on 4 bits)
+  		carry: OUT std_logic
+    );
+END Counter_S1;
+
+ARCHITECTURE TypeArchitecture OF Counter_S1 IS
+
+BEGIN
+
+	process(clock_S1)
+	
+	variable internal_state: std_logic_vector(3 downto 0) := "0000";
+	variable internal_carry: std_logic := '0';
+	
+	begin
+	
+	if(enable_S1 = '1') then
+		if(reset = '1') then internal_state := "0000"; --reset with 0
+		elsif(rising_edge(clock_S1)) then
+			if(up_or_down = '1') then --count up
+				if(internal_state = "0101") then internal_state := "0000";
+				else internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "0000") then internal_carry := '1'; --finish counting in the loop 0-5
+				else internal_carry := '0';
+				end if;
+			else --count down
+				if(internal_state = "0000") then internal_state := "0101";
+				else internal_state := internal_state - 1;
+				end if;
+				if(internal_state = "0101") then internal_carry := '1'; --finish counting in the loop 5-0
+				else internal_carry := '0';
+				end if;
+			end if;
+
+		end if;
+
+	end if;
+
+	Q_S1 <= internal_state;
+	carry <= internal_carry;
+
+	end process;
+	
+END TypeArchitecture;
+
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+
+ENTITY Counter_M0 IS
+  PORT (
+  		clock_M0, enable_M0, incmin, up_or_down, reset: IN std_logic;
+  		Q_M0: OUT std_logic_vector(3 downto 0); --reversible counter modulo 10 (0-9, on 4 bits) 
+  		carry: OUT std_logic
+    );
+END Counter_M0;
+
+ARCHITECTURE TypeArchitecture OF Counter_M0 IS
+
+BEGIN
+
+	process(clock_M0)
+	
+	variable internal_state: std_logic_vector(3 downto 0) := "0000";
+	variable internal_carry: std_logic := '0';
+	
+	begin
+	
+	if(enable_M0 = '1') then
+		if(reset = '1') then internal_state := "0000"; --reset with 0
+		elsif(rising_edge(clock_M0)) then
+			if(up_or_down = '1') then --count up
+				if(incmin = '1') then internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "1001") then internal_state := "0000";
+				else internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "0000") then internal_carry := '1'; --finish counting in the loop 0-9
+				else internal_carry := '0';
+				end if;
+			else --count down
+				if(internal_state = "0000") then internal_state := "1001";
+				else internal_state := internal_state - 1;
+				end if;
+				if(internal_state = "1001") then internal_carry := '1'; --finish counting in the loop 9-0
+				else internal_carry := '0';
+				end if;
+			end if;
+
+		end if;
+
+	end if;
+
+	Q_M0 <= internal_state;
+	carry <= internal_carry;
+
+	end process;
+	
+END TypeArchitecture;
+
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+
+ENTITY Counter_M1 IS
+  PORT (
+  		clock_M1, enable_M1, incmin, up_or_down, reset: IN std_logic;
+  		Q_M1: OUT std_logic_vector(3 downto 0); --reversible counter modulo 10 (0-9, on 4 bits) 
+  		carry: OUT std_logic
+    );
+END Counter_M1;
+
+ARCHITECTURE TypeArchitecture OF Counter_M1 IS
+
+BEGIN
+
+	process(clock_M1)
+	
+	variable internal_state: std_logic_vector(3 downto 0) := "0000";
+	variable internal_carry: std_logic := '0';
+	
+	begin
+	
+	if(enable_M1 = '1') then
+		if(reset = '1') then internal_state := "0000"; --reset with 0
+		elsif(rising_edge(clock_M1)) then
+			if(up_or_down = '1') then --count up
+				if(internal_state = "1001") then internal_state := "0000";
+				else internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "0000") then internal_carry := '1'; --finish counting in the loop 0-9
+				else internal_carry := '0';
+				end if;
+			else --count down
+				if(internal_state = "0000") then internal_state := "1001";
+				else internal_state := internal_state - 1;
+				end if;
+				if(internal_state = "1001") then internal_carry := '1'; --finish counting in the loop 9-0
+				else internal_carry := '0';
+				end if;
+			end if;
+			
+		end if;
+
+	end if;
+
+	Q_M1 <= internal_state;
+	carry <= internal_carry;
+
+	end process;
+	
+END TypeArchitecture;
+

@@ -1,0 +1,32 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY Freq_Divider IS
+ --divides from 100 MHz to 1 Hz; 100 MHz = 100.000.000 Hz
+  PORT (
+  
+	clock: IN std_logic;
+  	divided_clock: OUT std_logic
+    );
+END Freq_Divider;
+
+ARCHITECTURE TypeArchitecture OF Freq_Divider IS
+
+signal count: INTEGER := 1;
+signal clk: std_logic;
+
+BEGIN
+
+process(clock)
+begin
+	if(rising_edge(clock)) then
+		if(count < 49999999) then count <= count + 1;
+		elsif(count = 49999999) then count <= 0;
+		clk <= not clk;
+		end if;
+	end if;
+end process;
+
+divided_clock <= clk;
+
+END TypeArchitecture;

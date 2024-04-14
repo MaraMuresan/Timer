@@ -1,0 +1,58 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+ 
+ENTITY Debouncer IS
+PORT (
+	button: IN std_logic;
+	clk: IN std_logic;
+	button_debounced: OUT std_logic);
+END Debouncer;
+ 
+ARCHITECTURE TypeArchitecture OF Debouncer IS
+
+COMPONENT D_ff IS
+PORT (
+  D, clock: in std_logic;
+  Q: out std_logic
+    );
+END COMPONENT;
+
+signal Q0: std_logic := '0';
+signal Q1: std_logic := '0';
+signal Q2: std_logic := '0'; 
+
+BEGIN
+
+LINK1: D_ff port map(D => button, clock => clk, Q => Q0);
+LINK2: D_ff port map(D => Q0, clock => clk, Q => Q1);
+LINK3: D_ff port map(D => Q1, clock => clk, Q => Q2);
+
+button_debounced <= Q0 and Q1 and Q2;
+
+ 
+END TypeArchitecture;
+
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY D_ff IS
+PORT (
+  D, clock: in std_logic;
+  Q: out std_logic
+    );
+END D_ff;
+
+
+ARCHITECTURE TypeArchitecture OF D_ff IS
+
+BEGIN
+
+process(clock)
+
+begin
+	if(rising_edge(clock)) then Q <= D;
+	end if;
+end process;
+
+END TypeArchitecture;

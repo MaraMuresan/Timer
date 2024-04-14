@@ -1,0 +1,54 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+
+ENTITY Counter_M0 IS
+  PORT (
+  		clock_M0, enable_M0, incmin, up_or_down, reset: IN std_logic;
+  		Q_M0: OUT std_logic_vector(3 downto 0); --reversible counter modulo 10 (0-9, on 4 bits) 
+  		carry: OUT std_logic
+    );
+END Counter_M0;
+
+ARCHITECTURE TypeArchitecture OF Counter_M0 IS
+
+BEGIN
+
+	process(clock_M0)
+	
+	variable internal_state: std_logic_vector(3 downto 0) := "0000";
+	variable internal_carry: std_logic := '0';
+	
+	begin
+	
+	if(enable_M0 = '1') then
+		if(reset = '1') then internal_state := "0000"; --reset with 0
+		elsif(rising_edge(clock_M0)) then
+			if(up_or_down = '1') then --count up
+				if(incmin = '1') then internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "1001") then internal_state := "0000";
+				else internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "0000") then internal_carry := '1'; --finish counting in the loop 0-9
+				else internal_carry := '0';
+				end if;
+			else --count down
+				if(internal_state = "0000") then internal_state := "1001";
+				else internal_state := internal_state - 1;
+				end if;
+				if(internal_state = "1001") then internal_carry := '1'; --finish counting in the loop 9-0
+				else internal_carry := '0';
+				end if;
+			end if;
+
+		end if;
+
+	end if;
+
+	Q_M0 <= internal_state;
+	carry <= internal_carry;
+
+	end process;
+	
+END TypeArchitecture;

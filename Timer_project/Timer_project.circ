@@ -1,0 +1,1069 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project source="3.8.0" version="1.0">
+  This file is intended to be loaded by Logisim-evolution v3.8.0(https://github.com/logisim-evolution/).
+
+  <lib desc="#Wiring" name="0">
+    <tool name="Splitter">
+      <a name="appear" val="center"/>
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="4"/>
+    </tool>
+    <tool name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="width" val="8"/>
+    </tool>
+    <tool name="Pull Resistor">
+      <a name="facing" val="north"/>
+    </tool>
+  </lib>
+  <lib desc="#Gates" name="1"/>
+  <lib desc="#Plexers" name="2"/>
+  <lib desc="#Arithmetic" name="3"/>
+  <lib desc="#Memory" name="4"/>
+  <lib desc="#I/O" name="5"/>
+  <lib desc="#TTL" name="6"/>
+  <lib desc="#TCL" name="7"/>
+  <lib desc="#Base" name="8"/>
+  <lib desc="#BFH-Praktika" name="9"/>
+  <lib desc="#Input/Output-Extra" name="10"/>
+  <lib desc="#Soc" name="11"/>
+  <main name="main"/>
+  <options>
+    <a name="gateUndefined" val="ignore"/>
+    <a name="simlimit" val="1000"/>
+    <a name="simrand" val="0"/>
+  </options>
+  <mappings>
+    <tool lib="8" map="Button2" name="Poke Tool"/>
+    <tool lib="8" map="Button3" name="Menu Tool"/>
+    <tool lib="8" map="Ctrl Button1" name="Menu Tool"/>
+  </mappings>
+  <toolbar>
+    <tool lib="8" name="Poke Tool"/>
+    <tool lib="8" name="Edit Tool"/>
+    <tool lib="8" name="Wiring Tool"/>
+    <tool lib="8" name="Text Tool"/>
+    <sep/>
+    <tool lib="0" name="Pin"/>
+    <tool lib="0" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+    </tool>
+    <sep/>
+    <tool lib="1" name="NOT Gate"/>
+    <tool lib="1" name="AND Gate"/>
+    <tool lib="1" name="OR Gate"/>
+    <tool lib="1" name="XOR Gate"/>
+    <tool lib="1" name="NAND Gate"/>
+    <tool lib="1" name="NOR Gate"/>
+    <sep/>
+    <tool lib="4" name="D Flip-Flop"/>
+    <tool lib="4" name="Register"/>
+  </toolbar>
+  <circuit name="main">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="main"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="downloadBoard" val="BASYS3"/>
+    <a name="downloadFrequency" val="1.0"/>
+    <a name="simulationFrequency" val="2000.0"/>
+    <boardmap boardname="BASYS3">
+      <mc key="/ALARM" map="389,295"/>
+      <mc key="/ANODES" pmap="273_234_0,225_234_0,180_234_0,130_234_0"/>
+      <mc key="/CATHODES" pmap="138_258_0,130_249_0,130_263_0,136_274_0,154_262_0,154_248_0,136_245_0"/>
+      <mc key="/CLK" map="321,237"/>
+      <mc key="/M" map="487,236"/>
+      <mc key="/PAUSE" map="536,203"/>
+      <mc key="/S" map="582,238"/>
+      <mc key="/S_S" map="536,235"/>
+    </boardmap>
+    <comp lib="0" loc="(100,410)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="PAUSE"/>
+    </comp>
+    <comp lib="0" loc="(100,660)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="CLK"/>
+    </comp>
+    <comp lib="0" loc="(1170,640)" name="Splitter">
+      <a name="appear" val="center"/>
+      <a name="bit1" val="0"/>
+      <a name="bit10" val="2"/>
+      <a name="bit11" val="2"/>
+      <a name="bit12" val="3"/>
+      <a name="bit13" val="3"/>
+      <a name="bit14" val="3"/>
+      <a name="bit15" val="3"/>
+      <a name="bit2" val="0"/>
+      <a name="bit3" val="0"/>
+      <a name="bit4" val="1"/>
+      <a name="bit5" val="1"/>
+      <a name="bit6" val="1"/>
+      <a name="bit7" val="1"/>
+      <a name="bit8" val="2"/>
+      <a name="bit9" val="2"/>
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="16"/>
+    </comp>
+    <comp lib="0" loc="(1540,180)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="ANODES"/>
+      <a name="output" val="true"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp lib="0" loc="(1540,200)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="CATHODES"/>
+      <a name="output" val="true"/>
+      <a name="width" val="7"/>
+    </comp>
+    <comp lib="0" loc="(720,490)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="north"/>
+      <a name="label" val="ALARM"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(80,100)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="S_S"/>
+    </comp>
+    <comp lib="0" loc="(80,200)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="M"/>
+    </comp>
+    <comp lib="0" loc="(80,300)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="S"/>
+    </comp>
+    <comp loc="(1150,180)" name="Cascaded_Counters">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="label" val="cascaded_counters_1"/>
+    </comp>
+    <comp loc="(1520,180)" name="Display_7segment">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="label" val="display_7segment_1"/>
+    </comp>
+    <comp loc="(350,100)" name="Debouncer">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="label" val="debouncer_1"/>
+    </comp>
+    <comp loc="(350,200)" name="Debouncer">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="label" val="debouncer_2"/>
+    </comp>
+    <comp loc="(350,300)" name="Debouncer">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="label" val="debouncer_3"/>
+    </comp>
+    <comp loc="(350,410)" name="Debouncer">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="label" val="debouncer_4"/>
+    </comp>
+    <comp loc="(350,660)" name="Freq_Divider">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="label" val="freq_divider_1"/>
+    </comp>
+    <comp loc="(720,180)" name="Command_Unit">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="label" val="command_unit_1"/>
+    </comp>
+    <comp loc="(980,640)" name="OR_GATE">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="label" val="or_gate_1"/>
+    </comp>
+    <wire from="(100,410)" to="(130,410)"/>
+    <wire from="(100,660)" to="(110,660)"/>
+    <wire from="(110,120)" to="(110,220)"/>
+    <wire from="(110,120)" to="(130,120)"/>
+    <wire from="(110,220)" to="(110,320)"/>
+    <wire from="(110,220)" to="(130,220)"/>
+    <wire from="(110,320)" to="(110,430)"/>
+    <wire from="(110,320)" to="(130,320)"/>
+    <wire from="(110,430)" to="(110,490)"/>
+    <wire from="(110,430)" to="(130,430)"/>
+    <wire from="(110,490)" to="(110,660)"/>
+    <wire from="(110,490)" to="(500,490)"/>
+    <wire from="(110,660)" to="(110,760)"/>
+    <wire from="(110,660)" to="(130,660)"/>
+    <wire from="(110,760)" to="(1280,760)"/>
+    <wire from="(1150,140)" to="(1150,180)"/>
+    <wire from="(1150,200)" to="(1150,660)"/>
+    <wire from="(1150,660)" to="(1170,660)"/>
+    <wire from="(1170,640)" to="(1170,660)"/>
+    <wire from="(1190,620)" to="(1200,620)"/>
+    <wire from="(1190,630)" to="(1220,630)"/>
+    <wire from="(1190,640)" to="(1240,640)"/>
+    <wire from="(1190,650)" to="(1260,650)"/>
+    <wire from="(1200,180)" to="(1200,620)"/>
+    <wire from="(1200,180)" to="(1300,180)"/>
+    <wire from="(1220,200)" to="(1220,630)"/>
+    <wire from="(1220,200)" to="(1300,200)"/>
+    <wire from="(1240,220)" to="(1240,640)"/>
+    <wire from="(1240,220)" to="(1300,220)"/>
+    <wire from="(1260,240)" to="(1260,650)"/>
+    <wire from="(1260,240)" to="(1300,240)"/>
+    <wire from="(1280,260)" to="(1280,760)"/>
+    <wire from="(1280,260)" to="(1300,260)"/>
+    <wire from="(1520,180)" to="(1540,180)"/>
+    <wire from="(1520,200)" to="(1540,200)"/>
+    <wire from="(350,100)" to="(410,100)"/>
+    <wire from="(350,200)" to="(500,200)"/>
+    <wire from="(350,300)" to="(370,300)"/>
+    <wire from="(350,410)" to="(410,410)"/>
+    <wire from="(350,660)" to="(760,660)"/>
+    <wire from="(370,220)" to="(370,300)"/>
+    <wire from="(370,220)" to="(500,220)"/>
+    <wire from="(410,100)" to="(410,180)"/>
+    <wire from="(410,180)" to="(500,180)"/>
+    <wire from="(410,240)" to="(410,410)"/>
+    <wire from="(410,240)" to="(500,240)"/>
+    <wire from="(480,140)" to="(1150,140)"/>
+    <wire from="(480,140)" to="(480,260)"/>
+    <wire from="(480,260)" to="(500,260)"/>
+    <wire from="(500,280)" to="(500,490)"/>
+    <wire from="(720,180)" to="(930,180)"/>
+    <wire from="(720,200)" to="(930,200)"/>
+    <wire from="(720,220)" to="(930,220)"/>
+    <wire from="(720,240)" to="(930,240)"/>
+    <wire from="(720,260)" to="(760,260)"/>
+    <wire from="(720,280)" to="(720,490)"/>
+    <wire from="(760,260)" to="(760,640)"/>
+    <wire from="(80,100)" to="(130,100)"/>
+    <wire from="(80,200)" to="(130,200)"/>
+    <wire from="(80,300)" to="(130,300)"/>
+    <wire from="(930,260)" to="(930,430)"/>
+    <wire from="(930,430)" to="(980,430)"/>
+    <wire from="(980,430)" to="(980,640)"/>
+  </circuit>
+  <vhdl name="Counter_S0">LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all
+;
+
+ENTITY Counter_S0 IS
+  PORT (
+  		clock_S0, enable_S0, incmin, up_or_down, reset: IN std_logic;
+  		Q_S0: OUT std_logic_vector(3 downto 0); --reversible counter modulo 10 (0-9, on 4 bits) 
+  		carry: OUT std_logic
+    );
+END Counter_S0;
+
+ARCHITECTURE TypeArchitecture OF Counter_S0 IS
+
+BEGIN
+
+	process(clock_S0)
+	
+	variable internal_state: std_logic_vector(3 downto 0) := "0000";
+	variable internal_carry: std_logic := '0';
+	
+	begin
+	
+	if(enable_S0 = '1') then
+		if(reset = '1') then internal_state := "0000"; --reset with 0
+		elsif(rising_edge(clock_S0)) then
+			if(up_or_down = '1') then --count up
+				if(internal_state = "1001") then internal_state := "0000";
+				else internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "0000") then internal_carry := '1'; --finish counting in the loop 0-9
+				else internal_carry := '0';
+				end if;
+			else --count down
+				if(internal_state = "0000") then internal_state := "1001";
+				else internal_state := internal_state - 1;
+				end if;
+				if(internal_state = "1001") then internal_carry := '1'; --finish counting in the loop 9-0
+				else internal_carry := '0';
+				end if;
+			end if;
+
+		end if;
+
+	end if;
+
+	Q_S0 &lt;= internal_state;
+	carry &lt;= internal_carry;
+
+	end process;
+	
+END TypeArchitecture;</vhdl>
+  <vhdl name="Counter_S1">LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+
+ENTITY Counter_S1 IS
+  PORT (
+  		clock_S1, enable_S1, incmin, up_or_down, reset: IN std_logic;
+  		Q_S1: OUT std_logic_vector(3 downto 0); --reversible counter modulo 6 (0-5, on 4 bits)
+  		carry: OUT std_logic
+    );
+END Counter_S1;
+
+ARCHITECTURE TypeArchitecture OF Counter_S1 IS
+
+BEGIN
+
+	process(clock_S1)
+	
+	variable internal_state: std_logic_vector(3 downto 0) := "0000";
+	variable internal_carry: std_logic := '0';
+	
+	begin
+	
+	if(enable_S1 = '1') then
+		if(reset = '1') then internal_state := "0000"; --reset with 0
+		elsif(rising_edge(clock_S1)) then
+			if(up_or_down = '1') then --count up
+				if(internal_state = "0101") then internal_state := "0000";
+				else internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "0000") then internal_carry := '1'; --finish counting in the loop 0-5
+				else internal_carry := '0';
+				end if;
+			else --count down
+				if(internal_state = "0000") then internal_state := "0101";
+				else internal_state := internal_state - 1;
+				end if;
+				if(internal_state = "0101") then internal_carry := '1'; --finish counting in the loop 5-0
+				else internal_carry := '0';
+				end if;
+			end if;
+
+		end if;
+
+	end if;
+
+	Q_S1 &lt;= internal_state;
+	carry &lt;= internal_carry;
+
+	end process;
+	
+END TypeArchitecture;
+</vhdl>
+  <vhdl name="Counter_M0">LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+
+ENTITY Counter_M0 IS
+  PORT (
+  		clock_M0, enable_M0, incmin, up_or_down, reset: IN std_logic;
+  		Q_M0: OUT std_logic_vector(3 downto 0); --reversible counter modulo 10 (0-9, on 4 bits) 
+  		carry: OUT std_logic
+    );
+END Counter_M0;
+
+ARCHITECTURE TypeArchitecture OF Counter_M0 IS
+
+BEGIN
+
+	process(clock_M0)
+	
+	variable internal_state: std_logic_vector(3 downto 0) := "0000";
+	variable internal_carry: std_logic := '0';
+	
+	begin
+	
+	if(enable_M0 = '1') then
+		if(reset = '1') then internal_state := "0000"; --reset with 0
+		elsif(rising_edge(clock_M0)) then
+			if(up_or_down = '1') then --count up
+				if(incmin = '1') then internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "1001") then internal_state := "0000";
+				else internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "0000") then internal_carry := '1'; --finish counting in the loop 0-9
+				else internal_carry := '0';
+				end if;
+			else --count down
+				if(internal_state = "0000") then internal_state := "1001";
+				else internal_state := internal_state - 1;
+				end if;
+				if(internal_state = "1001") then internal_carry := '1'; --finish counting in the loop 9-0
+				else internal_carry := '0';
+				end if;
+			end if;
+
+		end if;
+
+	end if;
+
+	Q_M0 &lt;= internal_state;
+	carry &lt;= internal_carry;
+
+	end process;
+	
+END TypeArchitecture;</vhdl>
+  <vhdl name="Counter_M1">LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+
+ENTITY Counter_M1 IS
+  PORT (
+  		clock_M1, enable_M1, incmin, up_or_down, reset: IN std_logic;
+  		Q_M1: OUT std_logic_vector(3 downto 0); --reversible counter modulo 10 (0-9, on 4 bits) 
+  		carry: OUT std_logic
+    );
+END Counter_M1;
+
+ARCHITECTURE TypeArchitecture OF Counter_M1 IS
+
+BEGIN
+
+	process(clock_M1)
+	
+	variable internal_state: std_logic_vector(3 downto 0) := "0000";
+	variable internal_carry: std_logic := '0';
+	
+	begin
+	
+	if(enable_M1 = '1') then
+		if(reset = '1') then internal_state := "0000"; --reset with 0
+		elsif(rising_edge(clock_M1)) then
+			if(up_or_down = '1') then --count up
+				if(internal_state = "1001") then internal_state := "0000";
+				else internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "0000") then internal_carry := '1'; --finish counting in the loop 0-9
+				else internal_carry := '0';
+				end if;
+			else --count down
+				if(internal_state = "0000") then internal_state := "1001";
+				else internal_state := internal_state - 1;
+				end if;
+				if(internal_state = "1001") then internal_carry := '1'; --finish counting in the loop 9-0
+				else internal_carry := '0';
+				end if;
+			end if;
+			
+		end if;
+
+	end if;
+
+	Q_M1 &lt;= internal_state;
+	carry &lt;= internal_carry;
+
+	end process;
+	
+END TypeArchitecture;</vhdl>
+  <vhdl name="Cascaded_Counters">LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY Cascaded_Counters IS
+  PORT (
+ 	reset, 
+enable_cascaded, incmin, up_or_down: IN std_logic;
+  	clock_cascaded: IN std_logic;
+  	carry: OUT std_logic;
+  	Q_cascaded: OUT std_logic_vector(15 downto 0)  --the output will be all the counters concatenated, all the numbers are "linked"
+    );
+END Cascaded_Counters;
+
+ARCHITECTURE TypeArchitecture OF Cascaded_Counters IS
+
+COMPONENT Counter_S0 is 
+PORT (
+  		clock_S0, enable_S0, incmin, up_or_down, reset: IN std_logic;
+  		Q_S0: OUT std_logic_vector(3 downto 0); --reversible counter modulo 10 (0-9, on 4 bits) 
+  		carry: OUT std_logic
+    );
+END COMPONENT;
+
+COMPONENT Counter_S1 is
+PORT (
+  		clock_S1, enable_S1, incmin, up_or_down, reset: IN std_logic;
+  		Q_S1: OUT std_logic_vector(3 downto 0); --reversible counter modulo 6 (0-5, on 4 bits)
+  		carry: OUT std_logic
+    );
+END COMPONENT;
+
+COMPONENT Counter_M0 is
+PORT (
+  		clock_M0, enable_M0, incmin, up_or_down, reset: IN std_logic;
+  		Q_M0: OUT std_logic_vector(3 downto 0); --reversible counter modulo 10 (0-9, on 4 bits) 
+  		carry: OUT std_logic
+    );
+END COMPONENT;
+
+COMPONENT Counter_M1 is
+PORT (
+  		clock_M1, enable_M1, incmin, up_or_down, reset: IN std_logic;
+  		Q_M1: OUT std_logic_vector(3 downto 0); --reversible counter modulo 10 (0-9, on 4 bits) 
+  		carry: OUT std_logic
+    );
+END COMPONENT;
+
+signal internal_state: std_logic_vector(15 downto 0); 
+signal carry_S0, carry_S1, carry_M0, carry_M1: std_logic;
+
+BEGIN
+
+C_S0: Counter_S0 port map(
+		clock_S0 =&gt; clock_cascaded, enable_S0 =&gt; enable_cascaded, incmin =&gt; incmin, up_or_down =&gt; up_or_down, reset =&gt; reset,
+		Q_S0 =&gt;  internal_state(3 downto 0), carry =&gt; carry_S0);
+
+C_S1: Counter_S1 port map(
+		clock_S1 =&gt; carry_S0, enable_S1 =&gt; enable_cascaded, incmin =&gt; incmin, up_or_down =&gt; up_or_down, reset =&gt; reset,
+		Q_S1 =&gt; internal_state(7 downto 4), carry =&gt; carry_S1 );
+
+C_M0: Counter_M0 port map(
+		clock_M0 =&gt; carry_S1, enable_M0 =&gt; enable_cascaded, incmin =&gt; incmin, up_or_down =&gt; up_or_down, reset =&gt; reset,
+		Q_M0 =&gt; internal_state(11 downto 8), carry =&gt; carry_M0 );
+
+C_M1: Counter_M1 port map(
+		clock_M1=&gt; carry_M0, enable_M1=&gt; enable_cascaded, incmin =&gt; incmin, up_or_down =&gt; up_or_down, reset =&gt; reset,
+		Q_M1 =&gt; internal_state(15 downto 12), carry =&gt; carry_M1 );
+
+Q_cascaded &lt;= internal_state;
+carry &lt;= carry_M1;
+
+END TypeArchitecture;
+
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all
+;
+
+ENTITY Counter_S0 IS
+  PORT (
+  		clock_S0, enable_S0, incmin, up_or_down, reset: IN std_logic;
+  		Q_S0: OUT std_logic_vector(3 downto 0); --reversible counter modulo 10 (0-9, on 4 bits) 
+  		carry: OUT std_logic
+    );
+END Counter_S0;
+
+ARCHITECTURE TypeArchitecture OF Counter_S0 IS
+
+BEGIN
+
+	process(clock_S0)
+	
+	variable internal_state: std_logic_vector(3 downto 0) := "0000";
+	variable internal_carry: std_logic := '0';
+	
+	begin
+	
+	if(enable_S0 = '1') then
+		if(reset = '1') then internal_state := "0000"; --reset with 0
+		elsif(rising_edge(clock_S0)) then
+			if(up_or_down = '1') then --count up
+				if(internal_state = "1001") then internal_state := "0000";
+				else internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "0000") then internal_carry := '1'; --finish counting in the loop 0-9
+				else internal_carry := '0';
+				end if;
+			else --count down
+				if(internal_state = "0000") then internal_state := "1001";
+				else internal_state := internal_state - 1;
+				end if;
+				if(internal_state = "1001") then internal_carry := '1'; --finish counting in the loop 9-0
+				else internal_carry := '0';
+				end if;
+			end if;
+
+		end if;
+
+	end if;
+
+	Q_S0 &lt;= internal_state;
+	carry &lt;= internal_carry;
+
+	end process;
+	
+END TypeArchitecture;
+
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+
+ENTITY Counter_S1 IS
+  PORT (
+  		clock_S1, enable_S1, incmin, up_or_down, reset: IN std_logic;
+  		Q_S1: OUT std_logic_vector(3 downto 0); --reversible counter modulo 6 (0-5, on 4 bits)
+  		carry: OUT std_logic
+    );
+END Counter_S1;
+
+ARCHITECTURE TypeArchitecture OF Counter_S1 IS
+
+BEGIN
+
+	process(clock_S1)
+	
+	variable internal_state: std_logic_vector(3 downto 0) := "0000";
+	variable internal_carry: std_logic := '0';
+	
+	begin
+	
+	if(enable_S1 = '1') then
+		if(reset = '1') then internal_state := "0000"; --reset with 0
+		elsif(rising_edge(clock_S1)) then
+			if(up_or_down = '1') then --count up
+				if(internal_state = "0101") then internal_state := "0000";
+				else internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "0000") then internal_carry := '1'; --finish counting in the loop 0-5
+				else internal_carry := '0';
+				end if;
+			else --count down
+				if(internal_state = "0000") then internal_state := "0101";
+				else internal_state := internal_state - 1;
+				end if;
+				if(internal_state = "0101") then internal_carry := '1'; --finish counting in the loop 5-0
+				else internal_carry := '0';
+				end if;
+			end if;
+
+		end if;
+
+	end if;
+
+	Q_S1 &lt;= internal_state;
+	carry &lt;= internal_carry;
+
+	end process;
+	
+END TypeArchitecture;
+
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+
+ENTITY Counter_M0 IS
+  PORT (
+  		clock_M0, enable_M0, incmin, up_or_down, reset: IN std_logic;
+  		Q_M0: OUT std_logic_vector(3 downto 0); --reversible counter modulo 10 (0-9, on 4 bits) 
+  		carry: OUT std_logic
+    );
+END Counter_M0;
+
+ARCHITECTURE TypeArchitecture OF Counter_M0 IS
+
+BEGIN
+
+	process(clock_M0)
+	
+	variable internal_state: std_logic_vector(3 downto 0) := "0000";
+	variable internal_carry: std_logic := '0';
+	
+	begin
+	
+	if(enable_M0 = '1') then
+		if(reset = '1') then internal_state := "0000"; --reset with 0
+		elsif(rising_edge(clock_M0)) then
+			if(up_or_down = '1') then --count up
+				if(incmin = '1') then internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "1001") then internal_state := "0000";
+				else internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "0000") then internal_carry := '1'; --finish counting in the loop 0-9
+				else internal_carry := '0';
+				end if;
+			else --count down
+				if(internal_state = "0000") then internal_state := "1001";
+				else internal_state := internal_state - 1;
+				end if;
+				if(internal_state = "1001") then internal_carry := '1'; --finish counting in the loop 9-0
+				else internal_carry := '0';
+				end if;
+			end if;
+
+		end if;
+
+	end if;
+
+	Q_M0 &lt;= internal_state;
+	carry &lt;= internal_carry;
+
+	end process;
+	
+END TypeArchitecture;
+
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+
+ENTITY Counter_M1 IS
+  PORT (
+  		clock_M1, enable_M1, incmin, up_or_down, reset: IN std_logic;
+  		Q_M1: OUT std_logic_vector(3 downto 0); --reversible counter modulo 10 (0-9, on 4 bits) 
+  		carry: OUT std_logic
+    );
+END Counter_M1;
+
+ARCHITECTURE TypeArchitecture OF Counter_M1 IS
+
+BEGIN
+
+	process(clock_M1)
+	
+	variable internal_state: std_logic_vector(3 downto 0) := "0000";
+	variable internal_carry: std_logic := '0';
+	
+	begin
+	
+	if(enable_M1 = '1') then
+		if(reset = '1') then internal_state := "0000"; --reset with 0
+		elsif(rising_edge(clock_M1)) then
+			if(up_or_down = '1') then --count up
+				if(internal_state = "1001") then internal_state := "0000";
+				else internal_state := internal_state + 1;
+				end if;
+				if(internal_state = "0000") then internal_carry := '1'; --finish counting in the loop 0-9
+				else internal_carry := '0';
+				end if;
+			else --count down
+				if(internal_state = "0000") then internal_state := "1001";
+				else internal_state := internal_state - 1;
+				end if;
+				if(internal_state = "1001") then internal_carry := '1'; --finish counting in the loop 9-0
+				else internal_carry := '0';
+				end if;
+			end if;
+			
+		end if;
+
+	end if;
+
+	Q_M1 &lt;= internal_state;
+	carry &lt;= internal_carry;
+
+	end process;
+	
+END TypeArchitecture;
+
+</vhdl>
+  <vhdl name="Freq_Divider">LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY Freq_Divider IS
+ --divides from 100 MHz to 1 Hz; 100 MHz = 100.000.000 Hz
+  PORT (
+  
+	clock: IN std_logic;
+  	divided_clock: OUT std_logic
+    );
+END Freq_Divider;
+
+ARCHITECTURE TypeArchitecture OF Freq_Divider IS
+
+signal count: INTEGER := 1;
+signal clk: std_logic;
+
+BEGIN
+
+process(clock)
+begin
+	if(rising_edge(clock)) then
+		if(count &lt; 49999999) then count &lt;= count + 1;
+		elsif(count = 49999999) then count &lt;= 0;
+		clk &lt;= not clk;
+		end if;
+	end if;
+end process;
+
+divided_clock &lt;= clk;
+
+END TypeArchitecture;
+</vhdl>
+  <vhdl name="Display_7segment">LIBRARY IEEE;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_unsigned.all;
+
+ENTITY Display_7segment IS
+  PORT (
+  	S0, S1, M0, M1: IN std_logic_vector(3 downto 0);
+  	anode: OUT std_logic_vector(3 downto 0);
+  	clock: IN std_logic;
+  	cathode: OUT std_logic_vector(6 downto 0)
+    );
+END Display_7segment;
+
+ARCHITECTURE TypeArchitecture OF Display_7segment IS
+
+signal count: std_logic_vector(15 downto 0);
+signal number: std_logic_vector(3 downto 0);
+
+BEGIN
+
+
+process(clock)
+begin
+	if (rising_edge(clock)) then count &lt;= count + 1;
+	end if;
+end process;
+
+--choosing the anode
+
+process(count)
+begin
+	case(count(15 downto 14)) is
+		when "00" =&gt; anode &lt;= not "1110";
+		when "01" =&gt; anode &lt;= not "1101";
+		when "10" =&gt; anode &lt;= not "1011";
+		when others =&gt; anode &lt;= not "0111";
+	end case;
+end process;
+
+--choosing the digits
+
+process(count, S0, S1, M0, M1)
+begin
+	case(count(15 downto 14)) is
+		when "00" =&gt; number &lt;= S0;
+		when "01" =&gt; number &lt;= S1;
+		when "10" =&gt; number &lt;= M0;
+		when others =&gt; number &lt;= M1;
+	end case;
+end process;
+
+--7 Segment BCD Decoder
+
+process(number)
+begin
+	case number is
+	when "0000" =&gt; cathode &lt;= not "0000001"; --0
+	when "0001" =&gt; cathode &lt;= not "1001111"; --1
+	when "0010" =&gt; cathode &lt;= not "0010010"; --2
+	when "0011" =&gt; cathode &lt;= not "0000110"; --3
+	when "0100" =&gt; cathode &lt;= not "1001100"; --4
+	when "0101" =&gt; cathode &lt;= not "0100100"; --5
+	when "0110" =&gt; cathode &lt;= not "0100000"; --6
+	when "0111" =&gt; cathode &lt;= not "0001111"; --7
+	when "1000" =&gt; cathode &lt;= not "0000000"; --8
+	when "1001" =&gt; cathode &lt;= not "0000100"; --9
+	when others =&gt; cathode &lt;= not "0000001"; --0
+	end case;
+end process;
+	
+END TypeArchitecture;</vhdl>
+  <vhdl name="Debouncer">LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+ 
+ENTITY Debouncer IS
+PORT (
+	button: IN std_logic;
+	clk: IN std_logic;
+	button_debounced: OUT std_logic);
+END Debouncer;
+ 
+ARCHITECTURE TypeArchitecture OF Debouncer IS
+
+COMPONENT D_ff IS
+PORT (
+  D, clock: in std_logic;
+  Q: out std_logic
+    );
+END COMPONENT;
+
+signal Q0: std_logic := '0';
+signal Q1: std_logic := '0';
+signal Q2: std_logic := '0'; 
+
+BEGIN
+
+LINK1: D_ff port map(D =&gt; button, clock =&gt; clk, Q =&gt; Q0);
+LINK2: D_ff port map(D =&gt; Q0, clock =&gt; clk, Q =&gt; Q1);
+LINK3: D_ff port map(D =&gt; Q1, clock =&gt; clk, Q =&gt; Q2);
+
+button_debounced &lt;= Q0 and Q1 and Q2;
+
+ 
+END TypeArchitecture;
+
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY D_ff IS
+PORT (
+  D, clock: in std_logic;
+  Q: out std_logic
+    );
+END D_ff;
+
+
+ARCHITECTURE TypeArchitecture OF D_ff IS
+
+BEGIN
+
+process(clock)
+
+begin
+	if(rising_edge(clock)) then Q &lt;= D;
+	end if;
+end process;
+
+END TypeArchitecture;</vhdl>
+  <vhdl name="Command_Unit">LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY Command_Unit IS
+  PORT ( 	
+	START_STOP, M, S, PAUSE, CARRY: IN std_logic; -- user inputs = "buttons"; CARRY = resources input, activated when we reach 0 by counting down
+  	CLOCK: in std_logic;
+  	RESET, HOLD, INCREMENT_MIN, UP_OR_DOWN, INCREMENT_SEC, ALARM: OUT std_logic -- outputs 
+    );
+END Command_Unit;
+
+ARCHITECTURE TypeArchitecture OF Command_Unit IS
+
+type STATE_T is (S_RESET,S_0, S_COUNT_UP, S_HOLD_UP, S_INCREMENT_MIN, S_INCREMENT_SEC, S_SHOW, S_UP_OR_DOWN,  S_COUNT_DOWN, S_ALARM);
+signal STATE, NEXT_STATE:  STATE_T := S_0;
+
+BEGIN
+
+UPDATE_STATE: process (S, M, CLOCK)
+		    begin 
+
+		    		if(S = '1' and M = '1') then
+		    		    STATE &lt;= S_0;
+		    		elsif(rising_edge(CLOCK)) then 
+		    		    STATE &lt;= NEXT_STATE;
+		    		end if;
+		    	end process UPDATE_STATE;
+
+TRANSITIONS: process (STATE, START_STOP, M, S, PAUSE, CARRY)
+		   begin
+
+		   		case STATE is
+		   			when S_0 =&gt; HOLD &lt;= '1';
+		   					  INCREMENT_MIN &lt;= '0'; 
+		   					  INCREMENT_SEC &lt;= '0';
+		   				       UP_OR_DOWN &lt;= '1'; 
+		   				       ALARM &lt;= '0';
+		   				       RESET &lt;= '1';
+		   				if(START_STOP = '0') then NEXT_STATE &lt;= S_0;
+		   				else NEXT_STATE &lt;= S_COUNT_UP;
+		   				end if;
+
+		   			when S_COUNT_UP =&gt; UP_OR_DOWN &lt;= '1';
+		   			                   HOLD &lt;= '1'; -- enable becomes 1, so the counters are working
+		   			                   INCREMENT_MIN &lt;= '0'; 
+		   			                   INCREMENT_SEC &lt;= '0';
+		   						    ALARM &lt;= '0';
+		   						    RESET &lt;= '0';
+		   				if(PAUSE = '1') then NEXT_STATE &lt;= S_HOLD_UP;
+		   				elsif (M = '1') then NEXT_STATE &lt;= S_INCREMENT_MIN;
+		   				elsif (S = '1') then NEXT_STATE &lt;= S_INCREMENT_SEC;
+		   				else NEXT_STATE &lt;= S_COUNT_UP;
+		   				end if;
+
+		   			when S_HOLD_UP =&gt; HOLD &lt;= '0';  -- enable becomes 0, so the counters stop
+		   						   INCREMENT_MIN &lt;= '0'; 
+		   						   INCREMENT_SEC &lt;= '0';
+		   						   UP_OR_DOWN &lt;= '1'; 
+		   						   ALARM &lt;= '0';
+		   						   RESET &lt;= '0';
+		   				if(START_STOP = '1') then NEXT_STATE &lt;= S_COUNT_UP;
+		   				else NEXT_STATE &lt;= S_HOLD_UP;
+		   				end if;
+
+		   			when S_INCREMENT_MIN =&gt; INCREMENT_MIN &lt;= '1';
+		   			                        HOLD &lt;= '1'; 
+		   			                        INCREMENT_SEC &lt;= '0';
+		   							    UP_OR_DOWN &lt;= '1'; 
+		   							    ALARM &lt;= '0';
+		   							    RESET &lt;= '0';
+		   							    NEXT_STATE &lt;= S_SHOW;
+						
+		   			when S_INCREMENT_SEC =&gt; INCREMENT_SEC &lt;= '1'; 
+		   			                        HOLD &lt;= '1'; 
+		   			                        INCREMENT_MIN &lt;= '0';
+		   							    UP_OR_DOWN &lt;= '1'; 
+		   							    ALARM &lt;= '0';
+		   							    RESET &lt;= '0';
+		   				      		    NEXT_STATE &lt;= S_SHOW;
+
+		   			when S_SHOW =&gt; HOLD &lt;= '0'; 
+								INCREMENT_MIN &lt;= '0'; 
+								INCREMENT_SEC &lt;= '0';
+		   						UP_OR_DOWN &lt;= '1';  
+		   						ALARM &lt;= '0';
+		   						RESET &lt;= '0';
+		   				if(START_STOP = '0') then NEXT_STATE &lt;= S_SHOW;
+		   		     	else NEXT_STATE &lt;= S_COUNT_DOWN;
+						end if;
+								
+								
+		   			when S_COUNT_DOWN =&gt; UP_OR_DOWN &lt;='0';
+		   			                     HOLD &lt;= '1'; 
+		   			                     INCREMENT_MIN &lt;= '0'; 
+		   			                     INCREMENT_SEC &lt;= '0';
+		   		                          ALARM &lt;= '0';
+		   		                          RESET &lt;= '0';
+		   		          if(CARRY = '0') then NEXT_STATE &lt;= S_COUNT_DOWN;
+		   				else  NEXT_STATE &lt;= S_ALARM;
+		   				end if;
+		   							
+		   			when S_ALARM =&gt; ALARM &lt;= '1';
+		   			                HOLD &lt;= '1'; 
+		   			                INCREMENT_MIN &lt;= '0'; 
+		   			                INCREMENT_SEC &lt;= '0';
+		   		                     UP_OR_DOWN &lt;= '0'; 
+		   		                     RESET &lt;= '1';
+		   		          if(START_STOP = '0') then NEXT_STATE &lt;= S_ALARM;
+		   				else NEXT_STATE &lt;= S_0;
+		   				end if;
+		   				
+		   			when others =&gt; null;
+		   				
+		   		end case;
+		   		
+		  end process TRANSITIONS;		
+		   				
+END TypeArchitecture;</vhdl>
+  <vhdl name="OR_GATE">
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY OR_GATE IS
+  PORT (
+  	A,B: IN STD_LOGIC;
+  	C: OUT STD_LOGIC
+    );
+END OR_GATE;
+
+
+ARCHITECTURE TypeArchitecture OF OR_GATE IS
+
+BEGIN
+
+C &lt;= A or B;
+
+END TypeArchitecture;
+</vhdl>
+  <vhdl name="D_ff">LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY D_ff IS
+PORT (
+  D, clock: in std_logic;
+  Q: out std_logic
+    );
+END D_ff;
+
+
+ARCHITECTURE TypeArchitecture OF D_ff IS
+
+BEGIN
+
+process(clock)
+
+begin
+	if(rising_edge(clock)) then Q &lt;= D;
+	end if;
+end process;
+
+END TypeArchitecture;
+</vhdl>
+</project>

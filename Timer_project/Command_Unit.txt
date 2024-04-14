@@ -1,0 +1,118 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY Command_Unit IS
+  PORT ( 	
+	START_STOP, M, S, PAUSE, CARRY: IN std_logic; -- user inputs = "buttons"; CARRY = resources input, activated when we reach 0 by counting down
+  	CLOCK: in std_logic;
+  	RESET, HOLD, INCREMENT_MIN, UP_OR_DOWN, INCREMENT_SEC, ALARM: OUT std_logic -- outputs 
+    );
+END Command_Unit;
+
+ARCHITECTURE TypeArchitecture OF Command_Unit IS
+
+type STATE_T is (S_RESET,S_0, S_COUNT_UP, S_HOLD_UP, S_INCREMENT_MIN, S_INCREMENT_SEC, S_SHOW, S_UP_OR_DOWN,  S_COUNT_DOWN, S_ALARM);
+signal STATE, NEXT_STATE:  STATE_T := S_0;
+
+BEGIN
+
+UPDATE_STATE: process (S, M, CLOCK)
+		    begin 
+
+		    		if(S = '1' and M = '1') then
+		    		    STATE <= S_0;
+		    		elsif(rising_edge(CLOCK)) then 
+		    		    STATE <= NEXT_STATE;
+		    		end if;
+		    	end process UPDATE_STATE;
+
+TRANSITIONS: process (STATE, START_STOP, M, S, PAUSE, CARRY)
+		   begin
+
+		   		case STATE is
+		   			when S_0 => HOLD <= '1';
+		   					  INCREMENT_MIN <= '0'; 
+		   					  INCREMENT_SEC <= '0';
+		   				       UP_OR_DOWN <= '1'; 
+		   				       ALARM <= '0';
+		   				       RESET <= '1';
+		   				if(START_STOP = '0') then NEXT_STATE <= S_0;
+		   				else NEXT_STATE <= S_COUNT_UP;
+		   				end if;
+
+		   			when S_COUNT_UP => UP_OR_DOWN <= '1';
+		   			                   HOLD <= '1'; -- enable becomes 1, so the counters are working
+		   			                   INCREMENT_MIN <= '0'; 
+		   			                   INCREMENT_SEC <= '0';
+		   						    ALARM <= '0';
+		   						    RESET <= '0';
+		   				if(PAUSE = '1') then NEXT_STATE <= S_HOLD_UP;
+		   				elsif (M = '1') then NEXT_STATE <= S_INCREMENT_MIN;
+		   				elsif (S = '1') then NEXT_STATE <= S_INCREMENT_SEC;
+		   				else NEXT_STATE <= S_COUNT_UP;
+		   				end if;
+
+		   			when S_HOLD_UP => HOLD <= '0';  -- enable becomes 0, so the counters stop
+		   						   INCREMENT_MIN <= '0'; 
+		   						   INCREMENT_SEC <= '0';
+		   						   UP_OR_DOWN <= '1'; 
+		   						   ALARM <= '0';
+		   						   RESET <= '0';
+		   				if(START_STOP = '1') then NEXT_STATE <= S_COUNT_UP;
+		   				else NEXT_STATE <= S_HOLD_UP;
+		   				end if;
+
+		   			when S_INCREMENT_MIN => INCREMENT_MIN <= '1';
+		   			                        HOLD <= '1'; 
+		   			                        INCREMENT_SEC <= '0';
+		   							    UP_OR_DOWN <= '1'; 
+		   							    ALARM <= '0';
+		   							    RESET <= '0';
+		   							    NEXT_STATE <= S_SHOW;
+						
+		   			when S_INCREMENT_SEC => INCREMENT_SEC <= '1'; 
+		   			                        HOLD <= '1'; 
+		   			                        INCREMENT_MIN <= '0';
+		   							    UP_OR_DOWN <= '1'; 
+		   							    ALARM <= '0';
+		   							    RESET <= '0';
+		   				      		    NEXT_STATE <= S_SHOW;
+
+		   			when S_SHOW => HOLD <= '0'; 
+								INCREMENT_MIN <= '0'; 
+								INCREMENT_SEC <= '0';
+		   						UP_OR_DOWN <= '1';  
+		   						ALARM <= '0';
+		   						RESET <= '0';
+		   				if(START_STOP = '0') then NEXT_STATE <= S_SHOW;
+		   		     	else NEXT_STATE <= S_COUNT_DOWN;
+						end if;
+								
+								
+		   			when S_COUNT_DOWN => UP_OR_DOWN <='0';
+		   			                     HOLD <= '1'; 
+		   			                     INCREMENT_MIN <= '0'; 
+		   			                     INCREMENT_SEC <= '0';
+		   		                          ALARM <= '0';
+		   		                          RESET <= '0';
+		   		          if(CARRY = '0') then NEXT_STATE <= S_COUNT_DOWN;
+		   				else  NEXT_STATE <= S_ALARM;
+		   				end if;
+		   							
+		   			when S_ALARM => ALARM <= '1';
+		   			                HOLD <= '1'; 
+		   			                INCREMENT_MIN <= '0'; 
+		   			                INCREMENT_SEC <= '0';
+		   		                     UP_OR_DOWN <= '0'; 
+		   		                     RESET <= '1';
+		   		          if(START_STOP = '0') then NEXT_STATE <= S_ALARM;
+		   				else NEXT_STATE <= S_0;
+		   				end if;
+		   				
+		   			when others => null;
+		   				
+		   		end case;
+		   		
+		  end process TRANSITIONS;		
+		   				
+END TypeArchitecture;

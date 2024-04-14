@@ -1,0 +1,23 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY D_ff IS
+PORT (
+  D, clock: in std_logic;
+  Q: out std_logic
+    );
+END D_ff;
+
+
+ARCHITECTURE TypeArchitecture OF D_ff IS
+
+BEGIN
+
+process(clock)
+
+begin
+	if(rising_edge(clock)) then Q <= D;
+	end if;
+end process;
+
+END TypeArchitecture;

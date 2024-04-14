@@ -1,0 +1,19 @@
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY OR_GATE IS
+  PORT (
+  	A,B: IN STD_LOGIC;
+  	C: OUT STD_LOGIC
+    );
+END OR_GATE;
+
+
+ARCHITECTURE TypeArchitecture OF OR_GATE IS
+
+BEGIN
+
+C <= A or B;
+
+END TypeArchitecture;
